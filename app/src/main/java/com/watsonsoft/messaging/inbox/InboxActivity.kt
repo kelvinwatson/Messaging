@@ -1,4 +1,4 @@
-package com.watsonsoft.messaging.view.inbox
+package com.watsonsoft.messaging.inbox
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
