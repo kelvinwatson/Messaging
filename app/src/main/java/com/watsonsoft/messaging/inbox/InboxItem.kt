@@ -1,8 +1,17 @@
 package com.watsonsoft.messaging.inbox
 
 import com.watsonsoft.messaging.R
+import com.watsonsoft.messaging.db.entity.Message
 import com.watsonsoft.messaging.databinding.BindingItem
 
-class InboxItem(val userName: String, val messagePreview: String? = null) : BindingItem {
+class InboxItem(val message: Message) : BindingItem {
+    var sender: Int? = null
+    var preview: String? = null
+
+    init {
+        sender = message.senderId
+        preview = message.content
+    }
+
     override fun getLayout() = R.layout.inbox_item
 }

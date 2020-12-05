@@ -12,6 +12,13 @@ android {
         dataBinding true
     }
 
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -29,11 +36,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 }
 
@@ -46,16 +50,45 @@ dependencies {
 
     //RecyclerView
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
-    // For control over item selection of both touch and mouse driven selection
     implementation "androidx.recyclerview:recyclerview-selection:$recyclerViewSelectionVersion"
+    // For control over item selection of both touch and mouse driven selection
 
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     //Hilt
     implementation "com.google.dagger:dagger:$hiltVersion"
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
 
+    //Hilt ViewModel
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltLifecycleViewModelVersion"
+    kapt "androidx.hilt:hilt-compiler:$hiltCompilerVersion"
+
+    //Fragment
+    implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+
+    //Lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleRuntimeKtx"
+
+    //LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$liveDataKtxVersion"
+
+    //Room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion" // coroutine support and extensions
+    testImplementation "androidx.room:room-testing:$roomVersion" //test helpers
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    //ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewModelKtxVersion"
+
     //Test
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$jUnitVersion"
+    testImplementation "androidx.test:core:$testCoreVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
+    androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
 }
