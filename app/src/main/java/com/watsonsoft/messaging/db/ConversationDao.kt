@@ -1,9 +1,8 @@
 package com.watsonsoft.messaging.db
 
 import androidx.room.*
-import com.watsonsoft.messaging.db.entity.Conversation
-import com.watsonsoft.messaging.db.entity.ConversationToMessageRelation
-import com.watsonsoft.messaging.db.entity.MessageToUserRelation
+import com.watsonsoft.messaging.db.entity.*
+import javax.inject.Inject
 
 @Dao
 interface ConversationDao {
@@ -19,6 +18,12 @@ interface ConversationDao {
     @Transaction
     @Query("SELECT * FROM conversation")
     fun getConversationMessages(): List<ConversationToMessageRelation>
+
+    @Insert
+    fun writeMessage(message: Message)
+
+    @Insert
+    fun writeUser(user: User)
 
     /**
      * Get messages each with their associated user.

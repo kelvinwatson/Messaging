@@ -7,18 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import com.watsonsoft.messaging.R
 import com.watsonsoft.messaging.databinding.BindingAdapter
 import com.watsonsoft.messaging.db.ConversationDao
-import com.watsonsoft.messaging.db.entity.Conversation
 import com.watsonsoft.messaging.db.entity.Message
 import com.watsonsoft.messaging.inbox.component.InboxItem
 import com.watsonsoft.messaging.inbox.viewmodel.InboxViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_inbox.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -43,7 +39,7 @@ class InboxFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(viewModel) {
-            getContent().observe(viewLifecycleOwner, Observer { content ->
+            getConversations().observe(viewLifecycleOwner, Observer { content ->
                 println(content)
             })
         }
