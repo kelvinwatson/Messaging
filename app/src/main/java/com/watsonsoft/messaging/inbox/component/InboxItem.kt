@@ -1,4 +1,4 @@
-package com.watsonsoft.messaging.inbox
+package com.watsonsoft.messaging.inbox.component
 
 import com.watsonsoft.messaging.R
 import com.watsonsoft.messaging.db.entity.Message

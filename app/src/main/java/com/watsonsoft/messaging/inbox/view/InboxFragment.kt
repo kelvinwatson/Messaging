@@ -6,14 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.watsonsoft.messaging.R
 import com.watsonsoft.messaging.databinding.BindingAdapter
+import com.watsonsoft.messaging.db.ConversationDao
+import com.watsonsoft.messaging.db.entity.Conversation
 import com.watsonsoft.messaging.db.entity.Message
-import com.watsonsoft.messaging.db.entity.User
-import com.watsonsoft.messaging.inbox.InboxItem
-import com.watsonsoft.messaging.inbox.InboxViewModel
+import com.watsonsoft.messaging.inbox.component.InboxItem
+import com.watsonsoft.messaging.inbox.viewmodel.InboxViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_inbox.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -25,6 +30,9 @@ class InboxFragment : Fragment() {
     private val viewModel: InboxViewModel by viewModels()
 
     @Inject
+    lateinit var conversationDao: ConversationDao // FAKE
+
+    @Inject
     lateinit var bindingAdapter: BindingAdapter
 
     override fun onCreateView(
@@ -34,10 +42,10 @@ class InboxFragment : Fragment() {
     ): View? = inflater.inflate(R.layout.fragment_inbox, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         with(viewModel) {
-            getContent()
-
+            getContent().observe(viewLifecycleOwner, Observer { content ->
+                println(content)
+            })
         }
 
         recycler.adapter = bindingAdapter

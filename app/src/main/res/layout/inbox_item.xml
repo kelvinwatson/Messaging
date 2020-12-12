@@ -5,7 +5,7 @@
 
         <variable
             name="bindingItem"
-            type="com.watsonsoft.messaging.inbox.InboxItem" />
+            type="com.watsonsoft.messaging.inbox.component.InboxItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
