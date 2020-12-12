@@ -49,6 +49,20 @@ class ConversationDaoTest {
     }
 
     @Test
+    fun verifyGetConversationById() {
+        uut.insertConversation(Conversation(101))
+        uut.insertConversation(Conversation(102))
+        assertThat(uut.getAllConversations().size, Is(2))
+        assertThat(uut.getConversationById(101).id, Is(101))
+        assertThat(uut.getConversationById(102).id, Is(102))
+    }
+
+    @Test
+    fun verifyGetConversationMessages() {
+
+    }
+
+    @Test
     fun verifyDeletion() {
         Conversation(101).run {
             uut.insertConversation(this)

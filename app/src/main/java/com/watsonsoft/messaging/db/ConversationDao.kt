@@ -14,12 +14,15 @@ interface ConversationDao {
     fun getConversationById(id: Int): Conversation
 
     /**
-     * Get a conversation's messages
+     * Get a conversation's messages.
      */
     @Transaction
     @Query("SELECT * FROM conversation")
     fun getConversationMessages(): List<ConversationToMessageRelation>
 
+    /**
+     * Get messages each with their associated user.
+     */
     @Transaction
     @Query("SELECT * FROM message")
     fun getMessageSender(): List<MessageToUserRelation>
@@ -29,14 +32,4 @@ interface ConversationDao {
 
     @Delete
     fun deleteConversation(conversation: Conversation)
-
-    //    @Query("SELECT * FROM message WHERE content LIKE :word")
-//    fun findAllByWord(word: String): List<Message>
-
-//    /**
-//    //     * Get a sender's messages (will this query actually be used?)
-//    //     */
-//    @Transaction
-//    @Query("SELECT * FROM user")
-//    fun getSenderMessages(): List<UserToMessageRelation>
 }
