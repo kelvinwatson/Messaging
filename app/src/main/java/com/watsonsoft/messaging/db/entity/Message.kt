@@ -24,7 +24,7 @@ data class Message(
 
     @ColumnInfo val content: String? = null,
 
-    @ColumnInfo(index = true) val senderId: Int,
+    @ColumnInfo(index = true) val conversationId: Int,
 
-    @ColumnInfo(index = true) val conversationId: Int
+    @ColumnInfo(index = true) val senderId: Int
 )

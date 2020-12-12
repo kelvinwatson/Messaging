@@ -5,6 +5,6 @@ import androidx.room.*
 @Entity(tableName = "user")
 data class User(
     @PrimaryKey val id: Int,
-    @ColumnInfo val name: String,
+    @ColumnInfo val userName: String,
     @ColumnInfo val avatarUrl: String? = null
 )

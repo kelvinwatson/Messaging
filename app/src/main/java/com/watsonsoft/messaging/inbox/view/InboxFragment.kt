@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.watsonsoft.messaging.R
 import com.watsonsoft.messaging.databinding.BindingAdapter
 import com.watsonsoft.messaging.db.entity.Message
+import com.watsonsoft.messaging.db.entity.User
 import com.watsonsoft.messaging.inbox.InboxItem
 import com.watsonsoft.messaging.inbox.InboxViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,8 +47,8 @@ class InboxFragment : Fragment() {
                     id = 0,
                     timeStamp = 12345L,
                     content = "Some content",
+                    conversationId = 123,
                     senderId = 10150,
-                    conversationId = 123
                 )
             )
         )

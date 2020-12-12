@@ -5,11 +5,11 @@ import com.watsonsoft.messaging.db.entity.Message
 import com.watsonsoft.messaging.databinding.BindingItem
 
 class InboxItem(val message: Message) : BindingItem {
-    var sender: Int? = null
+    var senderUserName: String? = null
     var preview: String? = null
 
     init {
-        sender = message.senderId
+        senderUserName = "fakeSenderId"
         preview = message.content
     }
 

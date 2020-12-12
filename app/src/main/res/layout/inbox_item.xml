@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing2"
-            android:text="@{bindingItem.sender}"
+            android:text="@{bindingItem.senderUserName}"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/preview"
             app:layout_constraintHorizontal_chainStyle="packed"

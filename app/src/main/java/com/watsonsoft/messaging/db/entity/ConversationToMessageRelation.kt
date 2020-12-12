@@ -15,5 +15,5 @@ data class ConversationToMessageRelation(
         parentColumn = "id",
         entityColumn = "conversationId",
         entity = Message::class
-    ) val messages: List<Message>
+    ) val messages: List<MessageToUserRelation>
 )
