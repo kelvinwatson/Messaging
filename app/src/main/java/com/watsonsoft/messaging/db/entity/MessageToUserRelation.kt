@@ -10,7 +10,8 @@ data class MessageToUserRelation(
     @Embedded val message: Message,
 
     @Relation(
+        entity = User::class,
+        entityColumn = "id",  // user id
         parentColumn = "senderId",
-        entityColumn = "id"  // user id
     ) val sender: User
 )

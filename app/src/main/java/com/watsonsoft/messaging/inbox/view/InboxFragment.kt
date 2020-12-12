@@ -39,9 +39,11 @@ class InboxFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(viewModel) {
-            getConversations().observe(viewLifecycleOwner, Observer { content ->
-                println(content)
-            })
+            getConversationMessages().observe(
+                viewLifecycleOwner,
+                Observer { conversationMessages ->
+                    println(conversationMessages)
+                })
         }
 
         recycler.adapter = bindingAdapter

@@ -24,7 +24,9 @@ class InboxViewModel @ViewModelInject internal constructor(private val repositor
             emit(data)
         }
 
-    fun conversationsWithMessages():LiveData<List<ConversationToMessageRelation>> = liveData {
-
-    }
+    fun getConversationMessages(): LiveData<List<ConversationToMessageRelation>> =
+        liveData(context = viewModelScope.coroutineContext + Dispatchers.IO) {
+            val data = repository.get().getConversationMessages()
+            emit(data)
+        }
 }
