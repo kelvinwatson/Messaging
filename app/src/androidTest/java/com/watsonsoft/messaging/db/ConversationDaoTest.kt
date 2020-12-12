@@ -4,8 +4,6 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.watsonsoft.messaging.db.entity.Conversation
-import kotlinx.coroutines.flow.take
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertThat
@@ -42,15 +40,13 @@ class ConversationDaoTest {
 
         Conversation(101).run {
             uut.insertConversation(this)
-            val listOfListOfConversations = uut.getAllConversations().take(1).toList()
-            assertThat(listOfListOfConversations[0].size, Is(1))
-            assertThat(listOfListOfConversations[0][0].id, Is(101))
+            assertThat(uut.getAllConversations().size, Is(1))
+            assertThat(uut.getAllConversations()[0].id, Is(101))
         }
         Conversation(102).run {
             uut.insertConversation(this)
-            val listOfListOfConversations = uut.getAllConversations().take(1).toList()
-            assertThat(listOfListOfConversations[0].size, Is(2))
-            assertThat(listOfListOfConversations[0][1].id, Is(102))
+            assertThat(uut.getAllConversations().size, Is(2))
+            assertThat(uut.getAllConversations()[1].id, Is(102))
         }
     }
 
@@ -58,8 +54,7 @@ class ConversationDaoTest {
     fun verifyGetConversationById() = runBlocking {
         uut.insertConversation(Conversation(101))
         uut.insertConversation(Conversation(102))
-        val listOfListOfConversations = uut.getAllConversations().take(1).toList()
-        assertThat(listOfListOfConversations[0].size, Is(2))
+        assertThat(uut.getAllConversations().size, Is(2))
         assertThat(uut.getConversationById(101).id, Is(101))
         assertThat(uut.getConversationById(102).id, Is(102))
     }
@@ -77,12 +72,10 @@ class ConversationDaoTest {
         Conversation(101).run {
             uut.insertConversation(this)
             uut.deleteConversation(this)
-            var listOfListOfConversations = uut.getAllConversations().take(1).toList()
-            assertThat(listOfListOfConversations[0].size, Is(0))
+            assertThat(uut.getAllConversations().size, Is(0))
 
             uut.deleteConversation(this)
-            listOfListOfConversations = uut.getAllConversations().take(1).toList()
-            assertThat(listOfListOfConversations[0].size, Is(0))
+            assertThat(uut.getAllConversations().size, Is(0))
         }
     }
 
