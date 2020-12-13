@@ -1,17 +1,35 @@
 package com.watsonsoft.messaging.inbox.component
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.watsonsoft.messaging.R
-import com.watsonsoft.messaging.db.entity.Message
-import com.watsonsoft.messaging.databinding.BindingItem
 
-class InboxItem(val message: Message) : BindingItem {
-    var senderUserName: String? = null
-    var preview: String? = null
+@Composable
+fun InboxItem() {
+    Row(
+        modifier = Modifier.padding(16.dp)
+    ) {
+        Image(
+            imageVector = vectorResource(id = R.drawable.ic_launcher_background),
+            modifier = Modifier.size(dimensionResource(id = R.dimen.avatarSize))
+        )
+        Column {
 
-    init {
-        senderUserName = "fakeSenderId"
-        preview = message.content
+        }
     }
+}
 
-    override fun getLayout() = R.layout.inbox_item
+@Preview
+@Composable
+fun PreviewInboxItem(){
+    InboxItem()
 }
