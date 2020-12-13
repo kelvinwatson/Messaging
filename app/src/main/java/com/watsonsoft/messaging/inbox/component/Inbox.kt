@@ -1,14 +1,13 @@
 package com.watsonsoft.messaging.inbox.component
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.watsonsoft.messaging.db.entity.Message
 
 @Composable
-fun Inbox() {
-    Column {
-        InboxItem()
-        InboxItem()
+fun Inbox(messages: List<Message>) {
+    LazyColumnFor(items = messages) { _ ->
         InboxItem()
     }
 }
@@ -16,5 +15,5 @@ fun Inbox() {
 @Preview
 @Composable
 fun PreviewInbox() {
-    Inbox()
+//    Inbox()
 }

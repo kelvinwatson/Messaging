@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.watsonsoft.messaging.db.entity.Conversation
 import com.watsonsoft.messaging.db.entity.ConversationToMessageRelation
+import com.watsonsoft.messaging.db.entity.ConversationToMessageToUserRelation
 import com.watsonsoft.messaging.inbox.repository.InboxRepository
 import com.watsonsoft.messaging.inbox.view.InboxFragment
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +28,12 @@ class InboxViewModel @ViewModelInject internal constructor(private val repositor
     fun getConversationMessages(): LiveData<List<ConversationToMessageRelation>> =
         liveData(context = viewModelScope.coroutineContext + Dispatchers.IO) {
             val data = repository.get().getConversationMessages()
+            emit(data)
+        }
+
+    fun getConversationsWithMessagesAndSender(): LiveData<List<ConversationToMessageToUserRelation>> =
+        liveData(context = viewModelScope.coroutineContext + Dispatchers.IO) {
+            val data = repository.get().getConversationsWithMessagesAndSender()
             emit(data)
         }
 }

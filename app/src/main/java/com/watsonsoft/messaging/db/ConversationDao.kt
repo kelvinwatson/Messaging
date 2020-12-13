@@ -32,6 +32,13 @@ interface ConversationDao {
     @Query("SELECT * FROM message")
     fun getMessageSender(): List<MessageToUserRelation>
 
+    /**
+     * Get conversations with their associated messages. Each message will have its associated sender.
+     */
+    @Transaction
+    @Query("SELECT * FROM conversation")
+    fun getConversationsWithMessagesAndSender(): List<ConversationToMessageToUserRelation>
+
     @Insert
     fun insertConversation(conversation: Conversation)
 

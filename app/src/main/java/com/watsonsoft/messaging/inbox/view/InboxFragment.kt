@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.ui.platform.ComposeView
@@ -36,17 +37,20 @@ class InboxFragment : Fragment() {
     ) = ComposeView(requireContext()).apply {
         setContent {
             MaterialTheme {
-                Inbox()
+//                Inbox()
+                FloatingActionButton(onClick = { fetch() }) {
+                    
+                }
             }
         }
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    
+    fun fetch() {
         with(viewModel) {
-            getConversationMessages().observe(
+            getConversationsWithMessagesAndSender().observe(
                 viewLifecycleOwner,
                 Observer { conversationMessages ->
-                    println(conversationMessages)
+                    println(conversationMessages) // update state here
                 })
         }
     }

@@ -13,5 +13,5 @@ data class MessageToUserRelation(
         entity = User::class,
         entityColumn = "id",  // user id
         parentColumn = "senderId",
-    ) val sender: User
+    ) val user: User
 )
